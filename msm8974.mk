@@ -111,6 +111,10 @@ PRODUCT_PACKAGES += \
     libmm-omxcore \
     libstagefrighthw
 
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8974
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 ifneq ($(BOARD_HAVE_RADIO),false)
