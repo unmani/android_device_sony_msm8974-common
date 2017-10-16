@@ -7,6 +7,7 @@ allow init trim_area_partition_device:blk_file setattr;
 allow init sysfs_camera_torch:lnk_file read;
 
 allow init debugfs:file write;
+allow init tmpfs:lnk_file { relabelfrom };
 
 #============= qti_init_shell ==============
 allow qti_init_shell iddd_file:dir { getattr open read remove_name rmdir write };

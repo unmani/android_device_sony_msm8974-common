@@ -8,6 +8,9 @@ allow rild tee_device:chr_file { read write open ioctl};
 allow rild tad:unix_stream_socket connectto;
 allow radio system_app_data_file:dir getattr;
 
+# Allow rild read to ro.semc
+allow rild ta_prop:file { read open getattr };
+
 allow servicemanager init:dir search;
 allow servicemanager rild:dir search;
 allow servicemanager rild:file read;
