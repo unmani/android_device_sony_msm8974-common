@@ -72,10 +72,6 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/init.camera.rc:root/init.camera.rc \
     $(COMMON_PATH)/rootdir/fstab.qcom:root/fstab.qcom
 
-# Recovery Init
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/init.qcom.power.rc:root/init.recovery.qcom.rc
-
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/system/bin/credmgrfirstboot.sh:system/bin/credmgrfirstboot.sh
 
@@ -148,4 +144,4 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 # Include non-opensource parts
-$(call inherit-product, vendor/sony/msm8974-common/msm8974-common-vendor.mk)
+#$(call inherit-product, vendor/sony/msm8974-common/msm8974-common-vendor.mk)
