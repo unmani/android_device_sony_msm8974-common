@@ -65,6 +65,9 @@ RED_LED_PATH := /sys/class/leds/led:rgb_red/brightness
 GREEN_LED_PATH := /sys/class/leds/led:rgb_green/brightness
 BLUE_LED_PATH := /sys/class/leds/led:rgb_blue/brightness
 
+# Recovery
+TARGET_RECOVERY_FSTAB := device/sony/msm8974-common/rootdir/fstab.qcom
+
 # CM Hardware
 BOARD_HARDWARE_CLASS += device/sony/msm8974-common/cmhw
 
