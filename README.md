@@ -19,19 +19,3 @@ Shinano Platform:
     Xperia Z3 Dual.....................Z3Dual
     Xperia Z3 Tablet Compact...........Scorpion
     Xperia Z3 Tablet Compact (Wi-Fi)...Scorpion_windy
-
-
-
-Depend on (Sony specific):
---------------------------
-
-    LineageOS/android_device_sony_common
-    LineageOS/android_device_sony_shinano-common
-    LineageOS/android_device_sony_rhine-common
-
-
-| version | kernel version                        |
-|---------|---------------------------------------|
-| 14.1    | LineageOS/android_kernel_sony_msm8974 |
-| 13      | LineageOS/android_kernel_sony_msm     |
-| 12.1    | LineageOS/android_kernel_sony_msm8974 |
