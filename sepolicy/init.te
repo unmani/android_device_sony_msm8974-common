@@ -1,3 +1,6 @@
+allow init { domain -lmkd -crash_dump }:process noatsecure;
+allow init debugfs:file write;
+
 #TAD
 allow init tad_socket:sock_file create;
 allow init tad_block_device:blk_file setattr;
@@ -6,12 +9,16 @@ allow init trim_area_partition_device:blk_file setattr;
 #Torch
 allow init sysfs_camera_torch:lnk_file read;
 
-allow init debugfs:file write;
-allow init tmpfs:lnk_file { relabelfrom };
+# Misc
+allow init cache_file:file append;
+allow init credmgrd_data_file:file append;
+allow init property_socket:sock_file write;
+allow init sensors_device:chr_file getattr;
+
 
 #============= qti_init_shell ==============
 allow qti_init_shell iddd_file:dir { getattr open read remove_name rmdir write };
 allow qti_init_shell tad:unix_stream_socket connectto;
 allow qti_init_shell tad_socket:sock_file write;
-allow qti_init_shell toolbox_exec:file entrypoint;
+allow qti_init_shell toolbox_exec:file { entrypoint getattr read };
 
