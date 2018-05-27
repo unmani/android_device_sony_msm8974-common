@@ -103,10 +103,7 @@
     <bool name="config_useDevInputEventForAudioJack">true</bool>
 
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveNotificationLed">true</bool>
-
-    <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveBatteryLed">true</bool>
+    <bool name="config_intrusiveNotificationLed">false</bool>
 
     <!-- Base "touch slop" value used by ViewConfiguration as a
          movement threshold where scrolling should begin. -->
@@ -117,12 +114,6 @@
          fading edges is prohibitively expensive on most GPUs. -->
     <bool name="config_ui_enableFadingMarquee">false</bool>
 
-    <!--  Maximum number of supported users -->
-    <integer name="config_multiuserMaximumUsers">4</integer>
-
-    <!--  Whether Multiuser UI should be shown -->
-    <bool name="config_enableMultiUserUI">true</bool>
-
     <!-- Is the device capable of hot swapping an UICC Card -->
     <bool name="config_hotswapCapable">true</bool>
 
@@ -131,7 +122,7 @@
 
     <!-- Configure wifi tcp buffersizes in the form:
          rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
-    <string name="config_wifi_tcp_buffers" translatable="false">524288,6291456,8291456,524288,6291456,8291456</string>
+    <string name="config_wifi_tcp_buffers" translatable="false">524288,1048576,2097152,262144,524288,1048576</string>
 
     <!-- Configure ethernet tcp buffersizes in the form:
          rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
@@ -146,32 +137,38 @@
          so that applications can still use their own mechanisms. -->
     <bool name="config_enableAutoPowerModes">true</bool>
 
-    <!-- Hardware keys present on the device, stored as a bit field.
-         This integer should equal the sum of the corresponding value for each
-         of the following keys present:
-             1 - Home
-             2 - Back
-             4 - Menu
-             8 - Assistant (search)
-            16 - App switch
-            32 - Camera
-            64 - Volume rocker
-         For example, a device with Home, Back and Menu keys would set this
-         config to 7. -->
-    <integer name="config_deviceHardwareKeys">96</integer>
+    <!-- Lockscreen rotation is default disabled into fmwk -->
+    <bool name="config_enableLockScreenRotation">true</bool>
 
-    <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
-         This integer should equal the sum of the corresponding value for each
-         of the following keys present:
-             1 - Home
-             2 - Back
-             4 - Menu
-             8 - Assistant (search)
-            16 - App switch
-            32 - Camera
-            64 - Volume rocker
-         For example, a device with Home, Back and Menu keys would set this
-         config to 7. -->
-    <integer name="config_deviceHardwareWakeKeys">96</integer>
+    <!-- If true, enables auto-rotation features using the accelerometer.
+         Otherwise, auto-rotation is disabled.  Applications may still request
+         to use specific orientations but the sensor is ignored and sensor-based
+         orientations are not available.  Furthermore, all auto-rotation related
+         settings are omitted from the system UI.  In certain situations we may
+         still use the accelerometer to determine the orientation, such as when
+         docked if the dock is configured to enable the accelerometer. -->
+    <bool name="config_supportAutoRotation">true</bool>
+
+    <!-- If true, the screen can be rotated via the accelerometer in all 4
+         rotations as the default behavior. -->
+    <bool name="config_allowAllRotations">true</bool>
+
+    <!-- The number of degrees to rotate the display when the device is in a desk dock.
+         A value of -1 means no change in orientation by default. -->
+    <integer name="config_deskDockRotation">-1</integer>
+
+    <!-- The number of degrees to rotate the display when the device is in a car dock.
+         A value of -1 means no change in orientation by default. -->
+    <integer name="config_carDockRotation">-1</integer>
+
+    <!-- Values for GPS configuration -->
+    <string-array translatable="false" name="config_gpsParameters">
+        <item>SUPL_HOST=supl.sonyericsson.com</item>
+        <item>SUPL_PORT=7275</item>
+        <item>SUPL_MODE=1</item>
+        <item>SUPL_VER=0x20000</item>
+        <item>LPP_PROFILE=2</item>
+        <item>A_GLONASS_POS_PROTOCOL_SELECT=2</item>
+    </string-array>
 
 </resources>
