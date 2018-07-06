@@ -12,11 +12,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Display rendering
 PRODUCT_PROPERTY_OVERRIDES += \
+    debug.sf.hw=1 \
+    debug.egl.hw=1 \
+    debug.composition.type=c2d \
     persist.hwc.mdpcomp.enable=true \
     debug.mdpcomp.logs=0 \
     debug.mdpcomp.4k2kSplit=1 \
     debug.mdpcomp.4k2kSplit=true \
-    dev.pm.dyn_samplingrate=1
+    dev.pm.dyn_samplingrate=1 \
+    sys.hwc.mdp_downscale_enabled=true
 
 # OpenGL ES 3.0
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -86,3 +90,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Misc
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.qmi.adb_logmask=0
+
+# NFC
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.nfc.port=I2C

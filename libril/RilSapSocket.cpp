@@ -86,9 +86,7 @@ void RilSapSocket::sOnUnsolicitedResponse(int unsolResponse,
        const void *data,
        size_t datalen) {
     RilSapSocket *sap_socket = getSocketById(RIL_SOCKET_1);
-    if(sap_socket){
-        sap_socket->onUnsolicitedResponse(unsolResponse, (void *)data, datalen);
-    }
+    sap_socket->onUnsolicitedResponse(unsolResponse, (void *)data, datalen);
 }
 #endif
 
@@ -252,7 +250,7 @@ void log_hex(const char *who, const uint8_t *buffer, int length) {
     int per_line = 0;
 
     do {
-        dest += snprintf(out, sizeof(out), "%8.8s [%8.8x] ", who, source);
+        dest += sprintf(out, "%8.8s [%8.8x] ", who, source);
         for(; source < length && dest_len - dest > 3 && per_line < BYTES_PER_LINE; source++,
         per_line ++) {
             out[dest++] = HEX_HIGH(buffer[source]);
