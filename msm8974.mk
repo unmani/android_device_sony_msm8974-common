@@ -64,22 +64,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.msm8974
 
-# Init
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
-    $(COMMON_PATH)/rootdir/init.sony.usb.rc:root/init.sony.usb.rc \
-    $(COMMON_PATH)/rootdir/init.camera.rc:root/init.camera.rc \
-    $(COMMON_PATH)/rootdir/fstab.qcom:root/fstab.qcom
-
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/system/bin/credmgrfirstboot.sh:system/bin/credmgrfirstboot.sh
-
-# Camera (stock .575 blobs)
-PRODUCT_PACKAGES += \
-	libshims_signal \
-	libshims_idd \
-        libsonycamera
-
 # Media profile
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \

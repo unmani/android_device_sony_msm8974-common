@@ -30,6 +30,8 @@ endif
 
 # use CAF variants
 BOARD_USES_QCOM_HARDWARE := true
+TARGET_USES_QCOM_BSP := true
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8974
 
 # Platform
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
@@ -55,8 +57,10 @@ TARGET_PROVIDES_CAMERA_HAL := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_USES_MEDIA_EXTENSIONS := true
 
 # Charger
+HEALTHD_ENABLE_TRICOLOR_LED := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
@@ -66,7 +70,7 @@ GREEN_LED_PATH := /sys/class/leds/led:rgb_green/brightness
 BLUE_LED_PATH := /sys/class/leds/led:rgb_blue/brightness
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/sony/msm8974-common/rootdir/fstab.qcom
+#TARGET_RECOVERY_FSTAB := device/sony/msm8974-common/rootdir/fstab.qcom
 
 # CM Hardware
 BOARD_HARDWARE_CLASS += device/sony/msm8974-common/cmhw
@@ -90,8 +94,8 @@ MAX_EGL_CACHE_KEY_SIZE := 12*1024
 # of the device.
 MAX_EGL_CACHE_SIZE := 2048*1024
 
-BOARD_CUSTOM_BOOTIMG := true
-BOARD_CUSTOM_BOOTIMG_MK := device/sony/msm8974-common/boot/custombootimg.mk
+# Init configuration for init_sony
+BOARD_USES_INIT_SONY := true
 
 # Lights HAL
 TARGET_PROVIDES_LIBLIGHT := true
