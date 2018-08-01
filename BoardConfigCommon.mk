@@ -30,6 +30,8 @@ endif
 
 # use CAF variants
 BOARD_USES_QCOM_HARDWARE := true
+TARGET_USES_QCOM_BSP := true
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8974
 
 # Platform
 TARGET_BOOTLOADER_BOARD_NAME := MSM8974
@@ -41,6 +43,10 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := krait
+TARGET_CUSTOM_DTBTOOL := dtbToolLineage
+
+# Defines for HW subsystems
+-include $(PLATFORM_PATH)/hardware/*/BoardConfig.mk
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -55,8 +61,10 @@ TARGET_PROVIDES_CAMERA_HAL := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_USES_MEDIA_EXTENSIONS := true
 
 # Charger
+HEALTHD_ENABLE_TRICOLOR_LED := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
@@ -65,20 +73,35 @@ RED_LED_PATH := /sys/class/leds/led:rgb_red/brightness
 GREEN_LED_PATH := /sys/class/leds/led:rgb_green/brightness
 BLUE_LED_PATH := /sys/class/leds/led:rgb_blue/brightness
 
-# Recovery
-TARGET_RECOVERY_FSTAB := device/sony/msm8974-common/rootdir/fstab.qcom
-
-# CM Hardware
-BOARD_HARDWARE_CLASS += device/sony/msm8974-common/cmhw
-
 # Font
 EXTENDED_FONT_FOOTPRINT := true
+
+# Dexpreopt
+ifeq ($(HOST_OS),linux)
+  ifneq ($(TARGET_BUILD_VARIANT),eng)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+      WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
+    endif
+  endif
+endif
+
+# exFAT
+TARGET_EXFAT_DRIVER := exfat
+
+# GPS
+USE_DEVICE_SPECIFIC_GPS := true
+DEVICE_SPECIFIC_GPS_PATH := hardware/qcom/gps/sdm845
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8974
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
+TARGET_NO_RPC := true
 
 # Graphics
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+TARGET_USES_GRALLOC1_ADAPTER := true
 
 # Shader cache config options
 # Maximum size of the  GLES Shaders that can be cached for reuse.
@@ -90,14 +113,16 @@ MAX_EGL_CACHE_KEY_SIZE := 12*1024
 # of the device.
 MAX_EGL_CACHE_SIZE := 2048*1024
 
-BOARD_CUSTOM_BOOTIMG := true
-BOARD_CUSTOM_BOOTIMG_MK := device/sony/msm8974-common/boot/custombootimg.mk
+# Init configuration for init_sony
+BOARD_USES_INIT_SONY := true
 
 # Lights HAL
 TARGET_PROVIDES_LIBLIGHT := true
 
-# QCOM Power
-TARGET_POWERHAL_VARIANT := qcom
+# Power
+TARGET_HAS_LEGACY_POWER_STATS := true
+TARGET_HAS_NO_WIFI_STATS := true
+TARGET_USES_INTERACTION_BOOST := true
 
 # RIL
 TARGET_RIL_VARIANT := caf
@@ -108,8 +133,5 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     device/sony/msm8974-common/sepolicy
 
-# RIL
-BOARD_PROVIDES_LIBRIL := true
-
-# Time
-BOARD_USES_QC_TIME_SERVICES := true
+# Treble
+DEVICE_MANIFEST_FILE := device/sony/msm8974-common/treble-manifest.xml

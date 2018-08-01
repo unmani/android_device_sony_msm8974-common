@@ -12,19 +12,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Display rendering
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.sf.hw=1 \
-    debug.egl.hw=1 \
-    debug.composition.type=c2d \
     persist.hwc.mdpcomp.enable=true \
     debug.mdpcomp.logs=0 \
     debug.mdpcomp.4k2kSplit=1 \
     debug.mdpcomp.4k2kSplit=true \
     dev.pm.dyn_samplingrate=1 \
-    sys.hwc.mdp_downscale_enabled=true
+    debug.hwui.use_buffer_age=false
 
 # OpenGL ES 3.0
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608
+
+# OMX properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.media.treble_omx=false
 
 # HDMI
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -75,12 +76,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.camera.facialproc=false \
     ro.qc.sdk.gestures.camera=false \
-    camera.disable_zsl_mode=1
+    camera.disable_zsl_mode=1 \
+    persist.camera.HAL3.enabled=0 \
+    camera2.portability.force_api=1
 
 # CameraAV MM HAL1 hacks
 PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.legacyencoder=true \
     media.stagefright.less-secure=true
+    
+# Wi-Fi interface name
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0
 
 # MPDecision
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -90,7 +97,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Misc
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.qmi.adb_logmask=0
-
-# NFC
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.nfc.port=I2C
